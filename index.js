@@ -164,9 +164,7 @@ const client = new MongoClient(uri, {
   }
 });
 
-app.get('/', (req, res) => {
-  res.send('Server is running on port 5000');
-});
+
 
 async function run() {
   try {
@@ -174,6 +172,11 @@ async function run() {
     await client.connect();
     const blogCollection = client.db('usama_mir').collection('blog');
     const messageCollection = client.db('usama_mir').collection('message');
+
+
+    app.get('/', (req, res) => {
+      res.send('Server is running');
+    });
 
     app.post('/message', async (req, res) => {
       try {
