@@ -161,9 +161,7 @@ const client = new MongoClient(uri, {
   }
 });
 
-app.get('/', (req, res) => {
-  res.send('Server is running on port 5000');
-});
+
 
 async function run() {
   try {
@@ -274,7 +272,11 @@ async function run() {
   }
 }
 
-run().catch(console.dir);
+run().catch(err => console.error(err));
+
+app.get('/', (req, res) => {
+  res.send('Server is running on port 5000');
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
