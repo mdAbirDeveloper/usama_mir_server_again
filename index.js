@@ -153,7 +153,8 @@ app.use(cors({
   origin: 'https://usama-mir-server-again.vercel.app'
 }));
 
-const uri = "mongodb+srv://usama_mir:8jzXTs98jfPNxlac@cluster0.6p7sbwz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// const uri = "mongodb+srv://usama_mir:8jzXTs98jfPNxlac@cluster0.6p7sbwz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASSWORD}@cluster0.6p7sbwz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
