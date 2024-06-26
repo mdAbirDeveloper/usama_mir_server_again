@@ -148,9 +148,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware setup
-app.use(cors({
-  origin: 'https://usama-mir-server-again.vercel.app'
-}));
+app.use(cors());
 app.use(express.json());
 
 // const uri = "mongodb+srv://usama_mir:8jzXTs98jfPNxlac@cluster0.6p7sbwz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
