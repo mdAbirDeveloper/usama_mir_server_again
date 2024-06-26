@@ -148,10 +148,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware setup
-app.use(express.json());
 app.use(cors({
   origin: 'https://usama-mir-server-again.vercel.app'
 }));
+app.use(express.json());
 
 // const uri = "mongodb+srv://usama_mir:8jzXTs98jfPNxlac@cluster0.6p7sbwz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const uri = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASSWORD}@cluster0.6p7sbwz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -159,9 +159,9 @@ const uri = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASSWORD}@clust
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
     version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
   }
 });
 
@@ -170,7 +170,6 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server (optional starting in v4.7)
-    await client.connect();
     const blogCollection = client.db('usama_mir').collection('blog');
     const messageCollection = client.db('usama_mir').collection('message');
 
@@ -283,7 +282,7 @@ async function run() {
   }
 }
 
-run().catch(console.dir);
+run()
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
