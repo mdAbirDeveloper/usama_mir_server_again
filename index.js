@@ -184,7 +184,7 @@ async function run() {
       }
     });
 
-    app.delete("/message/:id", async (req, res) => {
+    app.delete("/messages/:id", async (req, res) => {
       try {
         const id = req.params.id;
         const result = await messageCollection.findOneAndDelete({
